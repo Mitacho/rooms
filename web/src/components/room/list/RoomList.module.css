@@ -1,0 +1,51 @@
+.section {
+  grid-area: "content";
+  padding: var(--sm-spacing);
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.header h3 {
+  font-size: 1.5rem;
+  color: var(--text-secondary-color);
+}
+
+.card {
+  background-color: var(--fg-secondary-color);
+  padding: var(--md-spacing);
+  margin-bottom: var(--sm-spacing);
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.card p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px; /* fallback */
+  max-height: 32px; /* fallback */
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.card header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--md-spacing);
+}
+
+.usersIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 2.25rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sm-spacing);
+}

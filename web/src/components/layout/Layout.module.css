@@ -1,0 +1,21 @@
+.main {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: minmax(300px, 25%) auto minmax(300px, 25%);
+  grid-template-areas: "people content profile";
+  background-color: var(--bg-color);
+}
+
+@media (max-width: 1024px) {
+  .main {
+    grid-template-columns: 35% auto;
+    grid-template-areas: "people content";
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    grid-template-columns: auto;
+    grid-template-areas: "content";
+  }
+}

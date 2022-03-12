@@ -1,0 +1,67 @@
+.aside {
+  grid-area: "people";
+  padding: var(--sm-spacing);
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.peopleList {
+  padding: 0;
+  list-style: none;
+}
+
+.header {
+  margin-bottom: var(--sm-spacing);
+}
+
+.header h3 {
+  font-size: 1.5rem;
+  color: var(--text-secondary-color);
+}
+
+.personListItem,
+.personListItem a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.personListItem span {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.personListItem picture {
+  display: flex;
+  align-content: center;
+  height: 4rem;
+}
+
+.personListItemOnline::after {
+  content: "";
+  height: 1rem;
+  width: 1rem;
+  bottom: 0.25rem;
+  left: 2.125rem;
+  border-radius: 50%;
+  position: absolute;
+  border: 0.1875rem solid var(--fg-color);
+  background-color: var(--green-color);
+}
+
+.personListItem img {
+  margin: auto;
+  height: 3.125rem;
+  border-radius: 50%;
+  margin-right: var(--lg-spacing);
+}
+
+@media (max-width: 480px) {
+  .aside {
+    display: none;
+  }
+}

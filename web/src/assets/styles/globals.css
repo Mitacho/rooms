@@ -1,0 +1,108 @@
+@import url(./fonts.css);
+@import url(./colors.css);
+@import url(./spacing.css);
+@import url(./spinner.css);
+@import url(./size.css);
+
+*::after,
+*::before,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--paper-color);
+  color: var(--text-primary-color);
+}
+
+body,
+#__next {
+  height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.onlineDot {
+  height: 0.75rem;
+  width: 0.75rem;
+  border-radius: 50%;
+  border: 0.1875rem solid var(--fg-secondary-color);
+  background-color: var(--green-color);
+}
+
+.onlineDot.sm {
+  height: 1rem;
+  width: 1rem;
+}
+
+button {
+  background-color: var(--fg-color);
+  color: var(--blue-color);
+  padding: 0.985rem 1.25rem;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: filter 150ms linear;
+}
+
+button:hover {
+  filter: brightness(1.2);
+}
+
+button:disabled,
+input:disabled {
+  filter: brightness(0.7);
+  cursor: not-allowed;
+}
+
+button.p-m {
+  padding: 1.125rem 1.875rem;
+}
+
+input {
+  padding: 0.985rem 0.25rem;
+  background-color: var(--bg-color);
+  color: var(--text-secondary-color);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+button,
+fieldset,
+input {
+  border: none;
+  outline: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.325rem;
+}
+
+.form-helper-text {
+  hyphens: auto;
+  display: block;
+  margin-top: 0.325rem;
+  color: var(--text-secondary-color);
+}
+
+@media (max-width: 640px) {
+  button {
+    width: 100%;
+  }
+
+  button.notExpand {
+    width: initial;
+  }
+}

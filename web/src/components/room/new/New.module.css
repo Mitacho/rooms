@@ -1,0 +1,56 @@
+.section {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.75);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-content: center;
+  z-index: 2;
+}
+
+.sectionDisabled {
+  cursor: not-allowed;
+}
+
+.header h3 {
+  color: var(--text-secondary-color);
+}
+
+.form {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: auto;
+  height: auto;
+  max-height: 24rem;
+  max-width: 25rem;
+  overflow-y: auto;
+  background-color: var(--fg-secondary-color);
+  padding: var(--md-spacing);
+  border-radius: 0.25rem;
+  z-index: 4;
+}
+
+.form header,
+.form > div {
+  margin-bottom: var(--md-spacing);
+}
+.form footer {
+  margin-top: auto;
+}
+
+.form div fieldset {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-bottom: var(--sm-spacing);
+}
+
+@media (max-width: 480px) {
+  .form {
+    margin: auto var(--sm-spacing);
+  }
+}

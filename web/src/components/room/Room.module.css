@@ -1,0 +1,9 @@
+.section {
+  width: 100%;
+  grid-area: "content";
+  background-color: burlywood;
+}
+
+.header h3 {
+  color: var(--text-secondary-color);
+}

@@ -1,0 +1,51 @@
+.aside {
+  grid-area: "profile";
+  padding: var(--sm-spacing);
+}
+
+.header {
+  margin-bottom: var(--sm-spacing);
+}
+
+.card {
+  padding: var(--md-spacing);
+  background-color: var(--fg-secondary-color);
+  border-radius: 0.25rem;
+}
+
+.card header {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: var(--md-spacing);
+}
+
+.card picture {
+  display: flex;
+  align-content: center;
+  margin-right: var(--md-spacing);
+}
+
+.card img {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+}
+
+.header h3,
+.cardUsername h3 {
+  color: var(--text-secondary-color);
+}
+
+.header h3 {
+  font-size: 1.5rem;
+}
+
+.cardUsername h4 {
+  font-weight: normal;
+}
+
+@media (max-width: 1024px) {
+  .aside {
+    display: none;
+  }
+}
