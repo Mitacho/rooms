@@ -1,0 +1,11 @@
+mutation FindGitHubUser($login: String!) {
+  findGitHubUser(login: $login) {
+    errors {
+      field
+      message
+    }
+    user {
+      ...User
+    }
+  }
+}

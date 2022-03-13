@@ -1,0 +1,7 @@
+.loginForm {
+  width: 100%;
+  max-width: 20rem;
+  background-color: var(--fg-secondary-color);
+  padding: var(--md-spacing);
+  border-radius: 0.25rem;
+}

@@ -2,9 +2,12 @@ import { Layout, People, Profile, Room } from "components";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { Fragment, useCallback, useMemo, useState } from "react";
-import type { People as PeopleList, Person, RoomList } from "types";
+import type { People as PeopleList, RoomList } from "types";
+import useIsAuth from "utils/useIsAuth";
 
 const Home: NextPage = () => {
+  useIsAuth();
+
   const people: PeopleList = useMemo<PeopleList>(
     () => [
       {
@@ -47,16 +50,6 @@ const Home: NextPage = () => {
     []
   );
 
-  const user: Person = useMemo<Person>(
-    () => ({
-      name: "Mitacho",
-      username: "mitacho",
-      image: "https://avatars.githubusercontent.com/u/50084167?v=4",
-      isOnline: true,
-    }),
-    []
-  );
-
   const [open, setOpen] = useState<boolean>(false);
 
   const handleToggleForm = useCallback(() => {
@@ -76,7 +69,7 @@ const Home: NextPage = () => {
       <Layout>
         <People people={people} />
         <Room.List handleOpen={handleToggleForm} rooms={rooms} />
-        <Profile user={user} />
+        <Profile />
       </Layout>
       <Room.New open={open} handleOpen={handleToggleForm} />
     </Fragment>

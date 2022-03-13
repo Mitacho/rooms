@@ -1,7 +1,7 @@
-import { Field, ObjectType } from "type-graphql";
+import { Field, InputType } from "type-graphql";
 
-@ObjectType()
-export class User {
+@InputType()
+export class LoginInput {
   @Field()
   login: string;
   @Field(() => String, { nullable: true })

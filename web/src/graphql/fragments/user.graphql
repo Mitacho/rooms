@@ -1,0 +1,6 @@
+fragment User on User {
+  login
+  name
+  avatarUrl
+  bio
+}

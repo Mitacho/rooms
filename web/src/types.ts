@@ -1,7 +1,8 @@
 export type Person = {
-  name: string;
+  name?: string;
   username: string;
-  image: string;
+  avatarUrl?: string;
+  bio?: string;
   isOnline?: boolean;
 };
 

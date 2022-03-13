@@ -106,3 +106,7 @@ label {
     width: initial;
   }
 }
+
+.break-word {
+  word-wrap: break-word;
+}

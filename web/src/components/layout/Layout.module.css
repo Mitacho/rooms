@@ -1,4 +1,4 @@
-.main {
+.home {
   min-height: 100%;
   display: grid;
   grid-template-columns: minmax(300px, 25%) auto minmax(300px, 25%);
@@ -6,15 +6,26 @@
   background-color: var(--bg-color);
 }
 
+.login {
+  min-height: 100%;
+  padding: 0 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+}
+
 @media (max-width: 1024px) {
-  .main {
+  .home {
     grid-template-columns: 35% auto;
     grid-template-areas: "people content";
   }
 }
 
 @media (max-width: 480px) {
-  .main {
+  .home {
     grid-template-columns: auto;
     grid-template-areas: "content";
   }
