@@ -13,20 +13,17 @@ const Home: NextPage = () => {
       {
         name: "Mitacho",
         username: "mitacho",
-        image: "https://avatars.githubusercontent.com/u/50084167?v=4",
-        isOnline: true,
+        avatarUrl: "https://avatars.githubusercontent.com/u/50084167?v=4",
       },
       {
         name: "Ben Awad",
         username: "benawad",
-        image: "https://avatars.githubusercontent.com/u/7872329?v=4",
-        isOnline: false,
+        avatarUrl: "https://avatars.githubusercontent.com/u/7872329?v=4",
       },
       {
         name: "Hasherezade",
         username: "hasherezade",
-        image: "https://avatars.githubusercontent.com/u/3115348?v=4",
-        isOnline: false,
+        avatarUrl: "https://avatars.githubusercontent.com/u/3115348?v=4",
       },
     ],
     []

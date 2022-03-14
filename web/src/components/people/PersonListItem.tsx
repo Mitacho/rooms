@@ -7,11 +7,7 @@ type Props = {
 
 function PersonListItem({ person }: Props): JSX.Element {
   return (
-    <li
-      className={`${styles.personListItem} ${
-        person.isOnline ? styles.personListItemOnline : ""
-      }`}
-    >
+    <li className={`${styles.personListItem} ${styles.personListItemOnline}`}>
       <a
         href={`https://github.com/${person.username}`}
         target="_blank"
@@ -19,7 +15,10 @@ function PersonListItem({ person }: Props): JSX.Element {
         title="Visit this user's GitHub profile"
       >
         <picture>
-          <img src={person.image} alt={`${person.username} profile picture`} />
+          <img
+            src={person.avatarUrl}
+            alt={`${person.username} profile picture`}
+          />
         </picture>
         <span>{person.name}</span>
       </a>

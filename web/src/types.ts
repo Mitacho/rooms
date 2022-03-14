@@ -3,7 +3,6 @@ export type Person = {
   username: string;
   avatarUrl?: string;
   bio?: string;
-  isOnline?: boolean;
 };
 
 export type People = Array<Person>;
