@@ -58,6 +58,15 @@ const Login = (): JSX.Element => {
               router.push("/");
             }
           }
+        } else if (response.data?.findGitHubUser.user === null) {
+          setErrors(
+            toErrorMap([
+              {
+                field: "login",
+                message: "User not found",
+              },
+            ])
+          );
         }
       }}
     >
