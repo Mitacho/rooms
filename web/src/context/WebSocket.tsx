@@ -1,15 +1,6 @@
+import { useMeQuery } from "generated/graphql";
 import { createContext, memo, useCallback, useState } from "react";
 import { io } from "socket.io-client";
-
-const socket = io("http://localhost:4000", {
-  auth: {
-    token: "123123123",
-  },
-});
-
-socket.on("connect", () => {
-  console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-});
 
 type WebSocketContextData = {};
 
@@ -20,6 +11,17 @@ type WebSocketProviderProps = {
 const WebSocketContext = createContext({} as WebSocketContextData);
 
 function WebSocketProvider({ children }: WebSocketProviderProps): JSX.Element {
+  const { data } = useMeQuery();
+  const socket = io("http://localhost:4000", {
+    auth: {
+      user: data?.me,
+    },
+  });
+
+  socket.on("connect", () => {
+    console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+  });
+
   const [messages, setMessages] = useState<Array<string>>([
     "a",
     "asdasd",

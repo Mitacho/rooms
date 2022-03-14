@@ -10,11 +10,11 @@ export async function startWebSocket(server: FastifyInstance) {
   server.ready().then(() => {
     // middleware
     server.io.use((socket, next) => {
-      const token = socket.handshake.auth.token;
+      const user = socket.handshake.auth.user;
 
-      console.log(token);
+      console.log(user);
 
-      if (token) {
+      if (user) {
         next();
       } else {
         next(new Error("unauthorized"));
@@ -24,6 +24,7 @@ export async function startWebSocket(server: FastifyInstance) {
     // we need to wait for the server to be ready, else `server.io` is undefined
     server.io.on("connection", async (socket) => {
       console.log("new connection");
+      console.log(socket);
       socket.on("disconnect", () => {
         console.log("socket disconnected");
       });
