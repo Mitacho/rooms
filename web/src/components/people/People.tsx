@@ -1,19 +1,19 @@
 import { memo } from "react";
-import type { People as PeopleType } from "types";
+import { People } from "types";
 import styles from "./People.module.css";
 import PeopleList from "./PeopleList";
 
 type Props = {
-  people?: PeopleType;
+  users: People;
 };
 
-function People({ people }: Props): JSX.Element {
+function People({ users }: Props): JSX.Element {
   return (
     <aside className={styles.aside}>
       <header className={styles.header}>
         <h3>People</h3>
       </header>
-      <PeopleList people={people} />
+      <PeopleList users={users} />
     </aside>
   );
 }

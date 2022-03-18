@@ -1,16 +1,16 @@
-import type { People } from "types";
+import { People } from "types";
 import styles from "./People.module.css";
 import PersonListItem from "./PersonListItem";
 
 type Props = {
-  people?: People;
+  users: People;
 };
 
-function PeopleList({ people }: Props): JSX.Element {
+function PeopleList({ users }: Props): JSX.Element {
   return (
     <ul className={styles.peopleList}>
-      {people?.map((person) => (
-        <PersonListItem key={person.username} person={person} />
+      {users.map((person) => (
+        <PersonListItem key={person.login} person={person} />
       ))}
     </ul>
   );

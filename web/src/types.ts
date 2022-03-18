@@ -1,6 +1,8 @@
 export type Person = {
+  id: string;
+  self: boolean;
   name?: string;
-  username: string;
+  login: string;
   avatarUrl?: string;
   bio?: string;
 };

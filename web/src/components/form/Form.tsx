@@ -18,6 +18,7 @@ const FindUserSchema = Yup.object().shape({
 const Login = (): JSX.Element => {
   const [login] = useLoginMutation();
   const [findGitHubUser] = useFindGitHubUserMutation();
+
   const router = useRouter();
 
   return (
