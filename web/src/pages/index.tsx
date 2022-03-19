@@ -1,32 +1,17 @@
 import { Layout, People, Profile, Room } from "components";
+import { useRoomsQuery } from "generated/graphql";
 import useRoom from "hooks/useRoom";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Fragment, useCallback, useMemo, useState } from "react";
-import type { RoomList } from "types";
+import { Fragment, useCallback, useState } from "react";
 import useIsAuth from "utils/useIsAuth";
 
 const Home: NextPage = () => {
   useIsAuth();
   const { users } = useRoom("ubuntu");
 
-  const rooms: RoomList = useMemo<RoomList>(
-    () => [
-      {
-        id: "ubuntu",
-        discussion: "Ubuntu 21.10",
-        description: "Awesome features of the latest version of Ubuntu Linux",
-        users: 14,
-      },
-      {
-        id: "reversing",
-        discussion: "Reversing",
-        description: "Secrets of Reverse Engineering",
-        users: 9,
-      },
-    ],
-    []
-  );
+  const { data: roomsData } = useRoomsQuery();
+  const rooms = roomsData?.rooms || [];
 
   const [open, setOpen] = useState<boolean>(false);
 

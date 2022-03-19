@@ -1,0 +1,12 @@
+query Rooms {
+  rooms {
+    slug
+    members {
+      avatarUrl
+      login
+      name
+    }
+    discussion
+    description
+  }
+}

@@ -16,7 +16,7 @@ import {
   SESSION_SECRET,
   SESSION_TTL,
 } from "./constants";
-import { HelloResolver, UserResolver } from "./resolvers";
+import { HelloResolver, RoomResolver, UserResolver } from "./resolvers";
 import { startWebSocket } from "./socket";
 
 function fastifyAppClosePlugin(app: FastifyInstance): ApolloServerPlugin {
@@ -37,7 +37,7 @@ async function startApolloServer() {
   startWebSocket(app);
   const server = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver, HelloResolver],
+      resolvers: [UserResolver, HelloResolver, RoomResolver],
     }),
     context: ({ request, reply }) => ({ request, reply, redis }),
     plugins: [

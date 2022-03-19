@@ -1,5 +1,5 @@
+import { Room } from "generated/graphql";
 import Link from "next/link";
-import type { Room } from "types";
 import styles from "./RoomList.module.css";
 
 type Props = {
@@ -8,13 +8,13 @@ type Props = {
 
 function Card({ room }: Props): JSX.Element {
   return (
-    <Link href={`/room/${room.id}`}>
+    <Link href={`/room/${room.slug}`} passHref>
       <article title="Join this room" className={styles.card}>
         <header>
           <h2>{room.discussion}</h2>
           <div className={styles.usersIndicator}>
             <div className="onlineDot sm"></div>
-            <span>{room.users}</span>
+            <span>{room.members.length}</span>
           </div>
         </header>
         <p>{room.description}</p>

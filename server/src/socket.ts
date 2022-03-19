@@ -45,7 +45,7 @@ export async function startWebSocket(server: FastifyInstance) {
 
     // list on events
     adapterEvents.forEach((event) => {
-      const eventMessage = {
+      const eventMessage: { [key in AdapterEvent]: string } = {
         "join-room": "joined",
         "leave-room": "leave",
       };
