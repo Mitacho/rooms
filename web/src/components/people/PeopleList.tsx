@@ -1,9 +1,9 @@
-import { People } from "types";
+import { Room } from "generated/graphql";
 import styles from "./People.module.css";
 import PersonListItem from "./PersonListItem";
 
 type Props = {
-  users: People;
+  users: Room["members"];
 };
 
 function PeopleList({ users }: Props): JSX.Element {

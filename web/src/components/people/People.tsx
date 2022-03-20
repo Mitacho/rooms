@@ -1,10 +1,11 @@
+import { Room } from "generated/graphql";
 import { memo } from "react";
 import { People } from "types";
 import styles from "./People.module.css";
 import PeopleList from "./PeopleList";
 
 type Props = {
-  users: People;
+  users: Room["members"] | undefined;
 };
 
 function People({ users }: Props): JSX.Element {
@@ -13,7 +14,7 @@ function People({ users }: Props): JSX.Element {
       <header className={styles.header}>
         <h3>People</h3>
       </header>
-      <PeopleList users={users} />
+      {users ? <PeopleList users={users} /> : null}
     </aside>
   );
 }

@@ -1,8 +1,8 @@
-import { Room } from "generated/graphql";
+import { RoomsQuery } from "generated/graphql";
 import Card from "./Card";
 
 type Props = {
-  rooms?: Array<Room>;
+  rooms?: RoomsQuery["rooms"];
 };
 
 function List({ rooms }: Props): JSX.Element {

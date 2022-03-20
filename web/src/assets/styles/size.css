@@ -6,6 +6,10 @@
   min-width: 100%;
 }
 
+.maxWidthFull {
+  max-width: 100%;
+}
+
 .mw-50 {
   max-width: 5rem;
 }

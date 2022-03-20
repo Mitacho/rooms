@@ -1,17 +1,16 @@
 import { Layout, People, Profile, Room } from "components";
-import { useRoomsQuery } from "generated/graphql";
 import useRoom from "hooks/useRoom";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { Fragment, useCallback, useState } from "react";
 import useIsAuth from "utils/useIsAuth";
 
-const Home: NextPage = () => {
+const RoomPage: NextPage = () => {
   useIsAuth();
-  const { room } = useRoom("lobby");
-
-  const { data: roomsData } = useRoomsQuery();
-  const rooms = roomsData?.rooms || [];
+  const router = useRouter();
+  const slug = router.query.slug as string;
+  const { room } = useRoom(slug);
 
   const [open, setOpen] = useState<boolean>(false);
 
@@ -22,7 +21,7 @@ const Home: NextPage = () => {
   return (
     <Fragment>
       <Head>
-        <title>Rooms</title>
+        <title>Room</title>
         <meta
           name="description"
           content="Connect to rooms and discuss about anything with people"
@@ -31,7 +30,7 @@ const Home: NextPage = () => {
       </Head>
       <Layout>
         <People users={room?.members} />
-        <Room.List handleOpen={handleToggleForm} rooms={rooms} />
+        <Room room={room} />
         <Profile />
       </Layout>
       <Room.New open={open} handleOpen={handleToggleForm} />
@@ -39,4 +38,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default RoomPage;

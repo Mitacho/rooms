@@ -10,10 +10,16 @@ export type Person = {
 export type People = Array<Person>;
 
 export type Room = {
-  id: string;
+  slug: string;
   discussion: string;
   description: string;
-  users: number;
+  members: People;
 };
 
 export type RoomList = Array<Room>;
+
+export type Message = {
+  from: Person;
+  message: string;
+  time: Date;
+};

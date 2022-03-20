@@ -1,4 +1,5 @@
 import { Field, ObjectType } from "type-graphql";
+import { Message } from "./Message";
 import { User } from "./User";
 
 @ObjectType()
@@ -14,4 +15,7 @@ export class Room {
 
   @Field()
   description: string;
+
+  @Field(() => [Message])
+  messages: Array<Message>;
 }

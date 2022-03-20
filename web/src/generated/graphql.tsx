@@ -19,6 +19,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
+  DateTime: any;
 };
 
 export type FieldError = {
@@ -34,11 +36,21 @@ export type LoginInput = {
   name?: InputMaybe<Scalars["String"]>;
 };
 
+export type Message = {
+  __typename?: "Message";
+  from: User;
+  id: Scalars["ID"];
+  message: Scalars["String"];
+  time: Scalars["DateTime"];
+  to: Scalars["String"];
+};
+
 export type Mutation = {
   __typename?: "Mutation";
   findGitHubUser: UserResponse;
   login: UserResponse;
   logout: Scalars["Boolean"];
+  sendMessage: Scalars["Boolean"];
 };
 
 export type MutationFindGitHubUserArgs = {
@@ -49,11 +61,20 @@ export type MutationLoginArgs = {
   options: LoginInput;
 };
 
+export type MutationSendMessageArgs = {
+  options: SendMessageInput;
+};
+
 export type Query = {
   __typename?: "Query";
   hello: Scalars["String"];
   me?: Maybe<User>;
+  room?: Maybe<Room>;
   rooms: Array<Room>;
+};
+
+export type QueryRoomArgs = {
+  slug?: InputMaybe<Scalars["String"]>;
 };
 
 export type Room = {
@@ -61,7 +82,14 @@ export type Room = {
   description: Scalars["String"];
   discussion: Scalars["String"];
   members: Array<User>;
+  messages: Array<Message>;
   slug: Scalars["String"];
+};
+
+export type SendMessageInput = {
+  from: UserInput;
+  message: Scalars["String"];
+  to: Scalars["String"];
 };
 
 export type User = {
@@ -70,6 +98,13 @@ export type User = {
   bio?: Maybe<Scalars["String"]>;
   login: Scalars["String"];
   name?: Maybe<Scalars["String"]>;
+};
+
+export type UserInput = {
+  avatarUrl: Scalars["String"];
+  bio?: InputMaybe<Scalars["String"]>;
+  login: Scalars["String"];
+  name?: InputMaybe<Scalars["String"]>;
 };
 
 export type UserResponse = {
@@ -145,6 +180,41 @@ export type MeQuery = {
     name?: string | null;
     avatarUrl: string;
     bio?: string | null;
+  } | null;
+};
+
+export type RoomQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars["String"]>;
+}>;
+
+export type RoomQuery = {
+  __typename?: "Query";
+  room?: {
+    __typename?: "Room";
+    slug: string;
+    discussion: string;
+    description: string;
+    members: Array<{
+      __typename?: "User";
+      login: string;
+      avatarUrl: string;
+      name?: string | null;
+      bio?: string | null;
+    }>;
+    messages: Array<{
+      __typename?: "Message";
+      to: string;
+      message: string;
+      time: any;
+      id: string;
+      from: {
+        __typename?: "User";
+        login: string;
+        name?: string | null;
+        avatarUrl: string;
+        bio?: string | null;
+      };
+    }>;
   } | null;
 };
 
@@ -369,6 +439,68 @@ export function useMeLazyQuery(
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
+export const RoomDocument = gql`
+  query Room($slug: String) {
+    room(slug: $slug) {
+      slug
+      members {
+        login
+        avatarUrl
+        name
+        bio
+      }
+      discussion
+      description
+      messages {
+        from {
+          login
+          name
+          avatarUrl
+          bio
+        }
+        to
+        message
+        time
+        id
+      }
+    }
+  }
+`;
+
+/**
+ * __useRoomQuery__
+ *
+ * To run a query within a React component, call `useRoomQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRoomQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRoomQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useRoomQuery(
+  baseOptions?: Apollo.QueryHookOptions<RoomQuery, RoomQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<RoomQuery, RoomQueryVariables>(RoomDocument, options);
+}
+export function useRoomLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<RoomQuery, RoomQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<RoomQuery, RoomQueryVariables>(
+    RoomDocument,
+    options
+  );
+}
+export type RoomQueryHookResult = ReturnType<typeof useRoomQuery>;
+export type RoomLazyQueryHookResult = ReturnType<typeof useRoomLazyQuery>;
+export type RoomQueryResult = Apollo.QueryResult<RoomQuery, RoomQueryVariables>;
 export const RoomsDocument = gql`
   query Rooms {
     rooms {

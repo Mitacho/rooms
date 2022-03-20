@@ -1,0 +1,25 @@
+query Room($slug: String) {
+  room(slug: $slug) {
+    slug
+    members {
+      login
+      avatarUrl
+      name
+      bio
+    }
+    discussion
+    description
+    messages {
+      from {
+        login
+        name
+        avatarUrl
+        bio
+      }
+      to
+      message
+      time
+      id
+    }
+  }
+}

@@ -1,9 +1,18 @@
 .section {
-  width: 100%;
   grid-area: "content";
-  background-color: burlywood;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sm-spacing);
 }
 
 .header h3 {
+  font-size: 1.5rem;
   color: var(--text-secondary-color);
 }

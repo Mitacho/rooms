@@ -1,11 +1,11 @@
-import { Room } from "generated/graphql";
+import { RoomsQuery } from "generated/graphql";
 import { memo } from "react";
 import { RoomList } from "types";
 import List from "./List";
 import styles from "./RoomList.module.css";
 
 type Props = {
-  rooms?: Array<Room>;
+  rooms: RoomsQuery["rooms"];
   handleOpen: () => void;
 };
 

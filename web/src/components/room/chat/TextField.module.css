@@ -1,0 +1,9 @@
+.form {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  position: sticky;
+  bottom: 0;
+  background-color: var(--bg-color);
+  padding: var(--sm-spacing) 0;
+}

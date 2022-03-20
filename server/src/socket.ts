@@ -1,8 +1,10 @@
-import { User } from "entities";
+import { Room, User } from "entities";
 import type { FastifyInstance } from "fastify";
 import fastifyIO from "fastify-socket.io";
 import { Server } from "socket.io";
 import { CORS_ORIGIN_URL } from "./constants";
+import { rooms } from "./resolvers/room";
+import genRandomId from "./utils/genRandomId";
 
 let io: Server;
 
@@ -14,7 +16,9 @@ async function listAllUsers(room: string) {
   const clients = io.sockets.adapter.rooms.get(room);
   const userList: Array<User> = [];
 
-  for (const clientId of clients!) {
+  if (!clients) return;
+
+  for (const clientId of clients) {
     //this is the socket of each client in the room.
     const clientSocket = io.sockets.sockets.get(clientId);
 
@@ -29,7 +33,29 @@ async function listAllUsers(room: string) {
     userList.push(clientSocket?.data.user);
   }
 
-  io.to(room).emit("users", userList);
+  return io.to(room).emit("users", userList);
+}
+
+async function sendMessageToARoom(
+  from: User,
+  to: Room["slug"],
+  message: string
+) {
+  const indexOfRoom = rooms.findIndex((room) => room.slug === to);
+
+  if (indexOfRoom === -1) return;
+
+  const newMessage: Room["messages"][0] = {
+    from,
+    to,
+    message,
+    id: genRandomId(),
+    time: new Date(),
+  };
+
+  rooms[indexOfRoom].messages.push(newMessage);
+
+  io.to(`room:${to}`).emit("newMessage", newMessage);
 }
 
 export async function startWebSocket(server: FastifyInstance) {
@@ -75,6 +101,8 @@ export async function startWebSocket(server: FastifyInstance) {
       socket.on("join", (room) => {
         socket.join(`room:${room}`);
       });
+
+      socket.on("message", sendMessageToARoom);
     });
   });
 }

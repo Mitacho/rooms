@@ -1,0 +1,21 @@
+.chat {
+  height: 100%;
+  padding: var(--md-spacing) var(--md-spacing) 0 var(--md-spacing);
+  border-radius: 0.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat ul {
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.chat header p {
+  margin-top: var(--md-spacing);
+}
+
+.chatListItem {
+  list-style-type: none;
+}

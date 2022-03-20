@@ -4,8 +4,19 @@
   margin: 0.5rem 0;
 }
 
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noMargin {
+  margin: 0;
+}
+
 .containerFullWidth {
-  min-width: 100%;
+  width: 100%;
+  max-width: unset;
 }
 
 .container input {

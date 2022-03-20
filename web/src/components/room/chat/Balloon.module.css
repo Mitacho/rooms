@@ -1,0 +1,43 @@
+.container {
+  background-color: var(--fg-secondary-color);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  background-color: var(--fg-color);
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+.time {
+  margin-top: 1.5rem;
+  color: var(--text-tertiary-color);
+}
+
+.timeRight {
+  float: right;
+}
+
+.timeLeft {
+  float: left;
+}

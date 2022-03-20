@@ -1,9 +1,9 @@
-import { Room } from "generated/graphql";
+import { RoomsQuery } from "generated/graphql";
 import Link from "next/link";
 import styles from "./RoomList.module.css";
 
 type Props = {
-  room: Room;
+  room: RoomsQuery["rooms"][0];
 };
 
 function Card({ room }: Props): JSX.Element {

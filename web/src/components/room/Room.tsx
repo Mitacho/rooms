@@ -1,15 +1,17 @@
+import { Room as RoomType } from "generated/graphql";
+import Chat from "./chat/Chat";
 import RoomList from "./list/RoomList";
 import New from "./new/New";
 import styles from "./Room.module.css";
 
-type Props = {};
+type Props = {
+  room: RoomType | undefined | null;
+};
 
-const Room = (props: Props): JSX.Element => {
+const Room = ({ room }: Props): JSX.Element => {
   return (
     <section className={styles.section}>
-      <header className={styles.header}>
-        <h3>Room</h3>
-      </header>
+      <Chat room={room} />
     </section>
   );
 };
